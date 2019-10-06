@@ -26,13 +26,15 @@ To solidify my JS skills in:
 ### Backend and mock data
 
 
-### Persisting Data
+### Persists Data
 - [ ]
 
 If yes, how so?
 
-### User System
+### User System/login?
 - [ ]
+
+If yes, how so?
 
 ### API's/3rd party APIS?
 
