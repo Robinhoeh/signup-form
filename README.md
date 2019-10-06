@@ -1,21 +1,48 @@
+# Signup Form
+
 ### Screen shot of Project
 
-### Project Title
+### What does my product do?
+- Allows someone to signin to a form
+- Validates persons email if it contains the correct characters
+- Validates persons password if matches that of the mocked password stored in the Database
 
-### Motivation
+### Features
+- [ ] Email validation
+- [ ] Password validation
+- [ ] Clear UX
 
-### Code Style
+### End product
+
+### Built with
+HTML, CSS and JavaScript
+
+### What is it main purpose/function?
+To solidify my JS skills in:
+
+- [ ] client side(JavaScript)validation
+- [ ] simple data structures
+
+### Backend and mock data
+
+
+### Persisting Data
+- [ ]
+
+If yes, how so?
+
+### User System
+- [ ]
+
+### API's/3rd party APIS?
+
+### Design/UI
+By:
 
 ### Screen Shots
 
-### Built with
 
-### How to use
+### Where to find?
 
-### Credits
-
-### Features
-- [ ] Mercury
-- [ ] Venus
 
 
