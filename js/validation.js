@@ -56,9 +56,38 @@ const hasError = ((field) => {
   }
 
   // generic catch all
-  return 'The value you entered is invalid'
+  return 'The value you entered for thie field is invalid'
 
 }, true)
+
+// Show the error msg
+const showError = (field, err) => {
+	// show the msg...
+	field.classList.add(error)
+
+	const fieldId = field.id || field.name
+	if(!id) return
+
+	// check if err msg exists
+	// if not, create one
+
+	//We'll also use the field ID to create a unique ID for the message so we can find it again later (falling back to the field name in case there's no ID).
+
+	const message = field.form.querySelector('.error-message#error-for-' + id)
+	if(!message) {
+		message = document.createElement('div')
+		message.className = 'error-message'
+		message.id = 'error-for-' + id
+		field.parentNode.insertBefore(message, field.nextSibling)
+	}
+
+	// update err msg
+	message.innerHTML = err
+
+	// show err msg
+	message.style.display = 'block'
+	message.style.visibility = 'visible'
+}
 
 
 // Listen to events on blur
@@ -67,9 +96,9 @@ document.addEventListener('blur', (e) => {
 
   let error = hasError(e.target)
 
-  // if valid return null
-  if (validity.valid) return
+	// If err show err
+	if(err) {
+		showError(e.target, err)
+	}
 
-  // if field is required and empty
-  return 'The value you entered is invalid'
-})
+}, true)
