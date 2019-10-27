@@ -6,9 +6,9 @@ elementsWithValidate.forEach((element) => {
 })
 
 // Validate the field
-const hasError = ((field) => {
+const hasError = function(field) {
 // Don't validate submits, buttons, file and reset inputs, and disabled fields
-  if(field.disabled || field.type === 'file' || field.type ===
+  if (field.disabled || field.type === 'file' || field.type ===
   'reset' || field.type === 'button' || field.type === 'submit') return
 
   let validity = field.validity
@@ -29,7 +29,7 @@ const hasError = ((field) => {
     return 'Please lengthen this text to ' + field.length.getAttribute('minLength') + 'characters or more. You are currently using ' + field.value.length + 'characters.'
 
   // If too long
-  if (validty.tooLong)
+  if (validity.tooLong)
     return 'Please shorten this text to ' + field.length.getAtrribute('maxLength') + 'characters or less. You are currently using ' + field.value.length + 'characters.'
 
   // if number isnt a number
@@ -39,11 +39,11 @@ const hasError = ((field) => {
   if (validity.stepMismatch) return 'Please select a valid value'
 
   // if a number field is over the max
-  if (validty.rangeOverflow)
+  if (validity.rangeOverflow)
     return 'Please select a number that is no more than ' + field.getAttribute('max') + '.'
 
   // if a number field is under the minimum
-  if (validtiy.rangeUnderflow)
+  if (validity.rangeUnderflow)
     return 'Please select number that is no less than ' + field.getAtrribute('min') + '.'
 
   // if pattern doesn't match
@@ -56,49 +56,47 @@ const hasError = ((field) => {
   }
 
   // generic catch all
-  return 'The value you entered for thie field is invalid'
+	return 'The value you entered for thie field is invalid'
 
-}, true)
+}
 
 // Show the error msg
-const showError = (field, err) => {
+const showError = (field, error) => {
 	// show the msg...
-	field.classList.add(error)
+	field.classList.add('error')
 
 	const fieldId = field.id || field.name
-	if(!id) return
+	if(!fieldId) return
 
 	// check if err msg exists
 	// if not, create one
 
 	//We'll also use the field ID to create a unique ID for the message so we can find it again later (falling back to the field name in case there's no ID).
 
-	const message = field.form.querySelector('.error-message#error-for-' + id)
+	let message = field.form.querySelector('.error-message#error-for-' + fieldId)
 	if(!message) {
 		message = document.createElement('div')
 		message.className = 'error-message'
-		message.id = 'error-for-' + id
+		message.id = 'error-for-' + fieldId
 		field.parentNode.insertBefore(message, field.nextSibling)
 	}
 
 	// update err msg
-	message.innerHTML = err
+	message.innerHTML = error
 
 	// show err msg
 	message.style.display = 'block'
 	message.style.visibility = 'visible'
 }
 
-
 // Listen to events on blur
 document.addEventListener('blur', (e) => {
   if(!e.target.form.classList.contains('validate')) return
 
-  let error = hasError(e.target)
+  let err = hasError(e.target)
 
 	// If err show err
 	if(err) {
 		showError(e.target, err)
 	}
-
 }, true)
