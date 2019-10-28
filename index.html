@@ -13,10 +13,12 @@
 
 <body>
   <h1>Form Validation</h1>
-  <form action="" class="validate">
+  <p>When you leave a field, if there's an error it is logged to the console in developer tools.</p>
+
+  <form class="validate">
     <div>
       <label for="text">Name</label>
-      <input type="text" id="text">
+      <input type="text" id="text" required>
     </div>
 
     <div>
@@ -35,8 +37,8 @@
     </div>
 
     <input type="submit" class="button" value="Submit">
-  </form>
-  <script src="js/validation.js"></script>
+    </input>
+    <script src="js/validation.js"></script>
 </body>
 
 </html>
