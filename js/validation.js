@@ -64,11 +64,11 @@ const hasError = function(field) {
 }
 
 // Show the error msg
-const showError = (field, error) => {
+const showError = function(field, error) {
 
 	field.classList.add('error')
 
-	const fieldId = field.id || field.name
+	let fieldId = field.id || field.name
 	if(!fieldId) return
 
 	// check if err msg exists
@@ -85,8 +85,7 @@ const showError = (field, error) => {
   }
 
   // Add aria-describeby role to the input field
-  field.setAttribute('aria-describedby', 'error-for' + 'fieldId')
-
+  field.setAttribute('aria-describedby', 'error-for-' + fieldId)
 
 	// update err msg
 	message.innerHTML = error
@@ -96,7 +95,21 @@ const showError = (field, error) => {
 	message.style.visibility = 'visible'
 }
 
-const removeError = (field) => {
+const removeError = function(field)  {
+
+  field.classList.remove('error')
+
+  field.removeAttribute('aria-describedby')
+
+  const fieldId = field.id || field.name
+  if (!fieldId) return
+
+  let message = field.form.querySelector('.error-message#error-for-' + fieldId + '')
+  if(!message) return
+
+  message.innerHTML = ''
+  message.style.display = 'none'
+  message.style.visibility = 'hidden'
 
 }
 
@@ -104,11 +117,12 @@ const removeError = (field) => {
 document.addEventListener('blur', (e) => {
   if(!e.target.form.classList.contains('validate')) return
 
-  let err = hasError(e.target)
+  let error = hasError(e.target)
 
 	// If err show err
-	if(err) {
-		showError(e.target, err)
+	if(error) {
+    showError(e.target, error)
+    return
   }
 
   // Else, remove existing error
