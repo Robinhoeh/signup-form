@@ -66,7 +66,18 @@ const hasError = function(field) {
 // Show the error msg
 const showError = function(field, error) {
 
-	field.classList.add('error')
+  field.classList.add('error')
+
+  if(field.type === 'radio' && field.name) {
+    let group = document.getElementsByName(field.name)
+    if(group.length > 0) {
+      group.forEach((groupItem) => {
+        if(groupItem.form !== field.form)
+        groupItem.classList.add('error')
+      })
+      field = group[group.length - 1]
+    }
+  }
 
 	let fieldId = field.id || field.name
 	if(!fieldId) return
@@ -81,8 +92,22 @@ const showError = function(field, error) {
 		message = document.createElement('div')
 		message.className = 'error-message'
 		message.id = 'error-for-' + fieldId
-		field.parentNode.insertBefore(message, field.nextSibling)
+    field.parentNode.insertBefore(message, field.nextSibling)
+
+    let label;
+    if(field.type === 'radio' || field.type === 'checkbox') {
+      label = field.form.querySelector('label[for="' + fieldId + '"]') ||
+      field.parentNode
+      if (label) {
+        label.parentNode.insertBefore(message, label.nextSibling)
+      }
+    }
+
+  // Otherwise, insert it after the field
+  if (!label) {
+    field.parentNode.insertBefore(message, field.nextSibling);
   }
+}
 
   // Add aria-describeby role to the input field
   field.setAttribute('aria-describedby', 'error-for-' + fieldId)
@@ -98,6 +123,20 @@ const showError = function(field, error) {
 const removeError = function(field)  {
 
   field.classList.remove('error')
+
+  // if field is radio button, remove err from all and get last item in group
+
+  // When we go to remove the error, we similarly need to check if the field is a radio button that's part of a group, and if so, use the last radio button in that group to get the ID of our error message.
+  if(field.type === 'radio' && field.name) {
+    let group = document.getElementByName(field.name)
+    if(group > 0) {
+      group.forEach((groupItem) => {
+        if(groupItem.form !== field.form)
+        groupItem.remove.classList('error')
+      })
+      field.group = group[group.length - 1]
+    }
+  }
 
   field.removeAttribute('aria-describedby')
 
