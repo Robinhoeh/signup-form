@@ -13,6 +13,9 @@ const hasError = function(field) {
 
   let validity = field.validity
 
+  // If valid, return null
+  if (validity.valid) return;
+
   if (validity.valueMissing) return 'Please fill out this field'
 
   // if url or email is not the correct type
@@ -62,7 +65,7 @@ const hasError = function(field) {
 
 // Show the error msg
 const showError = (field, error) => {
-	// show the msg...
+
 	field.classList.add('error')
 
 	const fieldId = field.id || field.name
@@ -79,7 +82,11 @@ const showError = (field, error) => {
 		message.className = 'error-message'
 		message.id = 'error-for-' + fieldId
 		field.parentNode.insertBefore(message, field.nextSibling)
-	}
+  }
+
+  // Add aria-describeby role to the input field
+  field.setAttribute('aria-describedby', 'error-for' + 'fieldId')
+
 
 	// update err msg
 	message.innerHTML = error
@@ -87,6 +94,10 @@ const showError = (field, error) => {
 	// show err msg
 	message.style.display = 'block'
 	message.style.visibility = 'visible'
+}
+
+const removeError = (field) => {
+
 }
 
 // Listen to events on blur
@@ -98,5 +109,9 @@ document.addEventListener('blur', (e) => {
 	// If err show err
 	if(err) {
 		showError(e.target, err)
-	}
+  }
+
+  // Else, remove existing error
+  removeError(e.target)
+
 }, true)
