@@ -32,7 +32,7 @@ To solidify my JS skills in:
 
 ### Persists Data
 - [ ] Yes
-- [ x ] No
+- [x] No
 
 If yes, how so?
 
