@@ -3,7 +3,7 @@
 ### Screen shot of Project
 
 ### What does my product do?
-- Allows someone to signin to a form
+- Allows someone to submit to a form
 - Validates persons email, name and url
 - Leverages constraint validation API on FE
 - Does NOT use the baked in HTML validation error messages
@@ -38,13 +38,13 @@ If yes, how so?
 
 ### User System/login?
 - [ ] Yes
-- [ x ] No
+- [x] No
 
 If yes, how so?
 
 ### API's/3rd party APIS?
 - [ ] Yes
-- [ x ] No
+- [x] No
 
 ### Design/UI
 By:
