@@ -68,6 +68,8 @@ const showError = function(field, error) {
 
   field.classList.add('error')
 
+  // find all radio buttons part of a group, error all and get
+  // last item group
   if(field.type === 'radio' && field.name) {
     let group = document.getElementsByName(field.name)
     if(group.length > 0) {
@@ -128,7 +130,7 @@ const removeError = function(field)  {
 
   // When we go to remove the error, we similarly need to check if the field is a radio button that's part of a group, and if so, use the last radio button in that group to get the ID of our error message.
   if(field.type === 'radio' && field.name) {
-    let group = document.getElementByName(field.name)
+    let group = document.getElementsByName(field.name)
     if(group > 0) {
       group.forEach((groupItem) => {
         if(groupItem.form !== field.form)
@@ -168,3 +170,35 @@ document.addEventListener('blur', (e) => {
   removeError(e.target)
 
 }, true)
+
+
+
+// check all fields on submit
+document.addEventListener('submit', (e) => {
+  // Only run on forms flagged/that contain  validation
+  if(!e.target.classList.contains('validate')) return
+
+  let fields = e.target.elements
+
+  // store the first field with an error to a variable so we can bring into
+  // focus later
+
+  let error
+  let hasErrors
+
+  for (let i = 0; i < fields.length; i++) {
+    error = hasError(fields[i])
+    if(error) {
+      showError(fields[i], error)
+      if(!hasErrors) {
+        hasErrors = fields[i]
+      }
+    }
+  }
+
+  // if there are errors - dont submit form and focus on first element with error
+  if(hasErrors) {
+    e.preventDefault()
+    hasErrors.focus()
+  }
+}, false)
