@@ -1,3 +1,7 @@
+body {
+  background: gainsboro;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -5,9 +9,9 @@
 
 .inner-container {
   background: url(../assets/plant-background.jpg);
-  background-size: cover;
+  background-size: contain;
   width: 965px;
-  height: 100vh;
+  height: 80vh;
   position: relative;
   background-repeat: no-repeat;
   background-position: center;
@@ -15,7 +19,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 5% auto;
 }
 
 
