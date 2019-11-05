@@ -151,7 +151,6 @@ const removeError = function(field)  {
   message.innerHTML = ''
   message.style.display = 'none'
   message.style.visibility = 'hidden'
-
 }
 
 // Listen to events on blur
