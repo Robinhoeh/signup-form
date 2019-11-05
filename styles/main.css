@@ -1,15 +1,12 @@
-body {
-  background: gainsboro;
-}
 
 .container {
   display: flex;
   justify-content: center;
 }
 
-.inner-container {
+.card {
   background: url(../assets/plant-background.jpg);
-  background-size: contain;
+  background-size: cover;
   width: 965px;
   height: 80vh;
   position: relative;
@@ -19,6 +16,8 @@ body {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  box-shadow: 1px 1px 5px 1px grey;
+  border-radius: 4px;
   margin: 5% auto;
 }
 
