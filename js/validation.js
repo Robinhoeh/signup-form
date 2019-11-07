@@ -23,7 +23,7 @@ const hasError = function(field) {
 
     if (field.type === 'email') return 'Please enter a email'
 
-    if (field.type === 'url') return 'Please enter a url'
+    if (field.type === 'url') return 'Please enter a url, they usally start with http://'
 
   }
 
