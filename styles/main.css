@@ -1,6 +1,7 @@
 body {
   font-family: 'Quicksand', sans-serif;
 }
+
 .container {
   display: flex;
   justify-content: center;
@@ -58,6 +59,14 @@ input {
   width: 354px;
   box-shadow: 0px 1px 3px -1px black;
 }
+
+.error-message {
+  margin-top: 8px;
+  color: #f40000;
+  font-weight: 600;
+  line-height: 21px;
+}
+
 
 
 
